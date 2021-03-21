@@ -39,7 +39,6 @@ export class DateInputComponent implements OnInit, ControlValueAccessor {
     ]).subscribe(([day, month, year]) => {
       const date = new Date(year, month - 1, day);
       this._onChange(date);
-      this._onTouched();
     });
   }
 
@@ -64,9 +63,10 @@ export class DateInputComponent implements OnInit, ControlValueAccessor {
     this._onChange = fn;
   }
 
-  private _onTouched = (): void => undefined;
+  /** It's also called in the component template when we have a "blur" or "input" event */
+  public onTouched = (): void => undefined;
   public registerOnTouched(fn: () => void): void {
-    this._onTouched = fn;
+    this.onTouched = fn;
   }
 
   public setDisabledState(isDisabled: boolean): void {

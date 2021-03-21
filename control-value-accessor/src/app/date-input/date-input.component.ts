@@ -4,6 +4,7 @@ import {
   FormControl,
   NG_VALUE_ACCESSOR,
 } from '@angular/forms';
+import { isDate } from 'lodash-es';
 import { combineLatest } from 'rxjs';
 
 @Component({
@@ -35,18 +36,28 @@ export class DateInputComponent implements OnInit, ControlValueAccessor {
     });
   }
 
-  public writeValue(value: Date): void {
-    this.dayControl.setValue(value.getDate());
-    this.monthControl.setValue(value.getMonth() + 1);
-    this.yearControl.setValue(value.getFullYear());
+  public writeValue(value: Date | null): void {
+    if (isDate(value)) {
+      const day = value.getDate();
+      const month = value.getMonth() + 1;
+      const year = value.getFullYear();
+
+      this.dayControl.setValue(day);
+      this.monthControl.setValue(month);
+      this.yearControl.setValue(year);
+    } else {
+      this.dayControl.setValue(null);
+      this.monthControl.setValue(null);
+      this.yearControl.setValue(null);
+    }
   }
 
-  private _onChange = (value: Date) => undefined;
-  public registerOnChange(fn: (value: Date) => void): void {
+  private _onChange = (_value: Date | null): void => undefined;
+  public registerOnChange(fn: (value: Date | null) => void): void {
     this._onChange = fn;
   }
 
-  private _onTouched = () => undefined;
+  private _onTouched = (): void => undefined;
   public registerOnTouched(fn: () => void): void {
     this._onTouched = fn;
   }

@@ -1,0 +1,32 @@
+<div class="form-control">
+  <label [for]="dayInputID">Day</label>
+  <input
+    [id]="dayInputID"
+    type="text"
+    [formControl]="dayControl"
+    (blur)="onTouched()"
+    (input)="onTouched()"
+  />
+</div>
+
+<div class="form-control">
+  <label [for]="monthInputID">Month</label>
+  <input
+    [id]="monthInputID"
+    type="text"
+    [formControl]="monthControl"
+    (blur)="onTouched()"
+    (input)="onTouched()"
+  />
+</div>
+
+<div class="form-control">
+  <label [for]="yearInputID">Year</label>
+  <input
+    [id]="yearInputID"
+    type="text"
+    [formControl]="yearControl"
+    (blur)="onTouched()"
+    (input)="onTouched()"
+  />
+</div>

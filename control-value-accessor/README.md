@@ -1,27 +1,32 @@
-# ControlValueAccessor
+# Advanced Angular #1 - Control Value Accessor
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.5.
+This folder contains the code examples shown in the "Advanced Angular #1 - Control Value Accessor" article (TODO) and video (TODO).
 
-## Development server
+## Content Intro
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Angular allows us to control form inputs using the `FormsModule` or the `ReactiveFormsModule`. With them, you can bind a `FormControl` to your input and control its value.
 
-## Code scaffolding
+```html
+<input type="text" [(ngModel)]="name" />
+<input type="text" [formControl]="nameControl" />
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+But what if you create your own custom component? Like a datepicker, a star rating or a regex input. Can you bind a `FormControl` to it?
 
-## Build
+```html
+<app-datepicker [(ngModel)]="date"></app-datepicker>
+<app-datepicker [formControl]="dateControl"></app-datepicker>
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+<app-stars [(ngModel)]="stars"></app-stars>
+<app-stars [formControl]="starsControl"></app-stars>
 
-## Running unit tests
+<app-regex [(ngModel)]="regex"></app-regex>
+<app-regex [formControl]="regexControl"></app-regex>
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Running the Project
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+1. Install [NodeJS](https://nodejs.org/en/) >=10
+2. Install project dependencies `npm run clean-install` (try `npm install` if that doesn't work)
+3. Start the development server `npm start`
+4. Visit [http://localhost:4200](http://localhost:4200)

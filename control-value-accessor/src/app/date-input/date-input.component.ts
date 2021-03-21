@@ -6,6 +6,7 @@ import {
 } from '@angular/forms';
 import { isDate } from 'lodash-es';
 import { combineLatest } from 'rxjs';
+import { UniqueService } from '../unique';
 
 @Component({
   selector: 'app-date-input',
@@ -23,6 +24,12 @@ export class DateInputComponent implements OnInit, ControlValueAccessor {
   public readonly dayControl = new FormControl();
   public readonly monthControl = new FormControl();
   public readonly yearControl = new FormControl();
+
+  public readonly dayInputID = this._unique.id('day-input-');
+  public readonly monthInputID = this._unique.id('month-input-');
+  public readonly yearInputID = this._unique.id('year-input-');
+
+  constructor(private readonly _unique: UniqueService) {}
 
   public ngOnInit(): void {
     combineLatest([

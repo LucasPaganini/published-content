@@ -1,0 +1,24 @@
+:host {
+  display: flex;
+  justify-content: space-between;
+}
+
+label {
+  display: inline-block;
+  margin-right: 24px;
+  color: #2e003e;
+  font-size: 0.875rem;
+}
+
+input {
+  display: inline-block;
+  border-radius: 4px;
+  border: none;
+  padding: 12px;
+  font-size: 1rem;
+  width: 48px;
+  text-align: center;
+  opacity: 0.6;
+  background: #dddddd;
+  color: #2e003e;
+}

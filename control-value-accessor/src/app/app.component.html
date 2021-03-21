@@ -1,5 +1,11 @@
 <main>
   <h1>Choose a date</h1>
+
+  <h2>Usage with ReactiveFormsModule</h2>
   <app-date-input [formControl]="dateControl"></app-date-input>
   <p>Selected date: {{ dateControl.value | date: "fullDate" }}</p>
+
+  <h2>Usage with FormsModule</h2>
+  <app-date-input [(ngModel)]="date"></app-date-input>
+  <p>Selected date: {{ date | date: "fullDate" }}</p>
 </main>

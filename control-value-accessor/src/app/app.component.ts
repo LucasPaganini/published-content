@@ -7,13 +7,9 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+  /** For usage with reactive forms module */
   public readonly dateControl = new FormControl(new Date());
 
+  /** For usage with forms module */
   public date = new Date();
-
-  public ngOnInit(): void {
-    setInterval(() => {
-      console.log(this.date);
-    }, 2000);
-  }
 }

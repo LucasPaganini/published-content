@@ -3,6 +3,7 @@ import {
   ControlValueAccessor,
   FormControl,
   NG_VALUE_ACCESSOR,
+  Validators,
 } from '@angular/forms';
 import { isDate } from 'lodash-es';
 import { combineLatest } from 'rxjs';
@@ -21,9 +22,20 @@ import { UniqueService } from '../unique';
   ],
 })
 export class DateInputComponent implements OnInit, ControlValueAccessor {
-  public readonly dayControl = new FormControl();
-  public readonly monthControl = new FormControl();
-  public readonly yearControl = new FormControl();
+  public readonly dayControl = new FormControl(null, [
+    Validators.required,
+    Validators.min(1),
+    Validators.max(31),
+  ]);
+  public readonly monthControl = new FormControl(null, [
+    Validators.required,
+    Validators.min(1),
+    Validators.max(12),
+  ]);
+  public readonly yearControl = new FormControl(null, [
+    Validators.required,
+    Validators.min(0),
+  ]);
 
   public readonly dayInputID = this._unique.id('day-input-');
   public readonly monthInputID = this._unique.id('month-input-');
@@ -36,10 +48,31 @@ export class DateInputComponent implements OnInit, ControlValueAccessor {
       this.dayControl.valueChanges,
       this.monthControl.valueChanges,
       this.yearControl.valueChanges,
-    ]).subscribe(([day, month, year]) => {
-      const date = new Date(year, month - 1, day);
-      this._onChange(date);
+    ]).subscribe(() => {
+      const value = this._getValue();
+      this._onChange(value);
     });
+  }
+
+  /** Return a Date if the fields are ready or null otherwise */
+  private _getValue(): Date | null {
+    try {
+      if (
+        this.dayControl.invalid ||
+        this.monthControl.invalid ||
+        this.yearControl.invalid
+      )
+        return null;
+
+      const day = this.dayControl.value;
+      const month = this.monthControl.value;
+      const year = this.yearControl.value;
+      const date = new Date(year, month - 1, day);
+      return date;
+    } catch {
+      // Return null if something throws
+      return null;
+    }
   }
 
   public writeValue(value: Date | null): void {
@@ -63,7 +96,7 @@ export class DateInputComponent implements OnInit, ControlValueAccessor {
     this._onChange = fn;
   }
 
-  /** It's also called in the component template when we have a "blur" or "input" event */
+  /** It's called in the component template when we have a "blur" or "input" event */
   public onTouched = (): void => undefined;
   public registerOnTouched(fn: () => void): void {
     this.onTouched = fn;

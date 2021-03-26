@@ -1,6 +1,6 @@
 # Advanced Angular #1 - Control Value Accessor
 
-This folder contains the code examples shown in the "Advanced Angular #1 - Control Value Accessor" article (TODO) and video (TODO).
+This folder contains the code examples shown in the "Advanced Angular #1 - Control Value Accessor" article (TODO) and [video](https://youtu.be/HiW5CYOw6-Q).
 
 ## Content Intro
 

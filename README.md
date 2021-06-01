@@ -4,7 +4,11 @@ This repository contains all code examples present in my [articles](https://www.
 
 ## Index
 
-1. Advanced Angular #1 - Control Value Accessor
+1. Angular Poetry #1 - Control Value Accessor
+
    - [Repository](/control-value-accessor/README.md)
    - [Video](https://youtu.be/HiW5CYOw6-Q)
-   - Article (TODO)
+
+2. Angular Poetry #4 - Advanced Approaches to Angular Validators
+   - [Repository](/custom-validators/README.md)
+   - [Video](https://youtu.be/Vm-tlaJ4nug)

@@ -1,0 +1,21 @@
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+main {
+  background: white;
+  box-shadow: 2px 1px 22px 7px rgba(170, 170, 170, 0.66);
+  border-radius: 4px;
+  width: 100%;
+  max-width: 512px;
+  padding: 24px 32px 32px;
+}
+
+h1 {
+  margin-top: 0;
+  color: #2e003e;
+}

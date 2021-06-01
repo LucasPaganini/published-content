@@ -1,0 +1,8 @@
+<main>
+  <h1>Choose a date</h1>
+  <app-date-input [formControl]="dateControl"></app-date-input>
+  <p *ngIf="dateControl.valid">Selected date: {{ dateControl.value | date }}</p>
+  <p *ngIf="dateControl.hasError('invalid')">Error: Invalid date</p>
+  <p *ngIf="dateControl.hasError('weekend')">Error: Date is a weekend</p>
+  <p *ngIf="dateControl.hasError('holiday')">Error: Date is a holiday</p>
+</main>

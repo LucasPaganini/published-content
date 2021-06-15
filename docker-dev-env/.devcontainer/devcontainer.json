@@ -1,0 +1,20 @@
+// For format details, see https://aka.ms/vscode-remote/devcontainer.json or this file's README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.134.0/containers/javascript-node
+{
+  "name": "lucas-paganini-api",
+
+  "dockerComposeFile": "./docker-compose.yml",
+  "forwardPorts": [3000],
+  "service": "main",
+
+  "workspaceFolder": "/var/www",
+  "postStartCommand": "npm clean-install",
+  "shutdownAction": "stopCompose",
+
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/bash"
+  },
+
+  // Add the IDs of extensions you want installed when the container is created.
+  "extensions": ["ms-vscode-remote.remote-containers", "esbenp.prettier-vscode"]
+}

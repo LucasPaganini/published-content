@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "alwaysStrict": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "strictBindCallApply": true,
+    "strictFunctionTypes": true,
+    "strictPropertyInitialization": true,
+    "forceConsistentCasingInFileNames": true,
+    "allowJs": false,
+
+    "noEmitOnError": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "noImplicitReturns": true,
+
+    "lib": ["es2020"],
+    "types": ["node"],
+    "importHelpers": false,
+
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "target": "es2018",
+
+    "sourceMap": true,
+    "declaration": true,
+
+    "baseUrl": "src",
+    "paths": { "~/*": ["*"] },
+    "outDir": "dist"
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "src/**/*.spec.ts"]
+}

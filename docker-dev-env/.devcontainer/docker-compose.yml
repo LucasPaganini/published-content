@@ -1,0 +1,32 @@
+# Docker compose for development
+
+version: "3.8"
+
+services:
+  mongo-db:
+    image: mongo:4.4.3
+    networks:
+      - main-net
+
+  main:
+    build:
+      dockerfile: ./.devcontainer/Dockerfile
+      context: ..
+    image: lucas-paganini-api/main
+    ports:
+      - "3000:3000"
+    networks:
+      - main-net
+    environment:
+      DB_HOST: mongo-db:27017
+      PORT: 3000
+    depends_on:
+      - mongo-db
+    tty: true
+    volumes:
+      - ..:/var/www
+    command: bash
+
+networks:
+  main-net:
+    driver: bridge

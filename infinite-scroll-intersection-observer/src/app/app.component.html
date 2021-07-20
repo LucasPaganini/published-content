@@ -1,0 +1,8 @@
+<div class="cards-container">
+  <div class="card" *ngFor="let item of items">{{ item }}</div>
+  <div id="bottom-element"></div>
+</div>
+
+<div class="loading">
+  <mat-spinner *ngIf="isGettingMoreItems"></mat-spinner>
+</div>

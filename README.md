@@ -18,3 +18,8 @@ This repository contains all code examples present in my [articles](https://www.
 
    - [Repository](/docker-dev-env/README.md)
    - [Video](https://youtu.be/NqoYKwPQl6U)
+
+4. Intersection Observer & Infinite Scroll in a Visual Way
+
+   - [Repository](/infinite-scroll-intersection-observer/README.md)
+   - [Video](https://youtu.be/fvU6MC1cK9U)

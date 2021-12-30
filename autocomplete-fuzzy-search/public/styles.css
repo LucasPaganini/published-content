@@ -1,22 +1,23 @@
 .input-suggestions {
   position: absolute;
-    background: white;
-    border-radius: 4px;
-    box-shadow: 0px 10px 15px -3px rgb(0 0 0 / 10%);
-    border: 0;
-        overflow: hidden;
-    box-sizing: border-box;
+  background: white;
+  border-radius: 4px;
+  box-shadow: 0px 10px 15px -3px rgb(0 0 0 / 10%);
+  border: 0;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
 .input-suggestion {
-    width: 100%;
-    text-align: left;
-    padding: 8px 12px;
-    border: 0;
-    background: none;
-    cursor: pointer;
+  width: 100%;
+  text-align: left;
+  padding: 8px 12px;
+  border: 0;
+  background: none;
+  cursor: pointer;
 }
 
-.input-suggestion:hover, .input-suggestion:focus {
-    background: #ddd;
-} 
+.input-suggestion:hover,
+.input-suggestion:focus {
+  background: #ddd;
+}

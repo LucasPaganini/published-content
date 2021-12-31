@@ -2,10 +2,12 @@ const TEMPLATE = document.createElement('template');
 TEMPLATE.innerHTML = /* html */ `
 <style>
 :host {
+  display: flex;
+  flex-direction: column;
   position: absolute;
   background: white;
   border-radius: 4px;
-  box-shadow: 0px 10px 15px -3px rgb(0 0 0 / 10%);
+  box-shadow: 0px 10px 15px -3px rgb(0 0 0 / 20%);
   border: 0;
   overflow: hidden;
   box-sizing: border-box;
@@ -14,10 +16,12 @@ TEMPLATE.innerHTML = /* html */ `
 .option {
   width: 100%;
   text-align: left;
-  padding: 8px 12px;
+  padding: var(--app-dropdown-option-padding, 8px 12px);
   border: 0;
   background: none;
   cursor: pointer;
+  font-size: inherit;
+  font-family: inherit;
 }
 
 .option:hover,
@@ -112,7 +116,7 @@ export class AppDropdownElement extends HTMLElement {
       this.style.display = 'none';
     }
 
-    this.style.display = 'block';
+    this.style.display = 'flex';
 
     const connectedElementCoordinates = this.connectedTo.getBoundingClientRect();
     this.style.left = connectedElementCoordinates.left.toString() + 'px';

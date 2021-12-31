@@ -23,16 +23,28 @@ BROWSER_INPUT_ELEMENT.addEventListener('input', () => {
  * @returns {void}
  */
 const renderInputSuggestions = (inputEl, suggestions) => {
-  // <app-dropdown [options]="suggestions" [connectedTo]="inputEl">
+  // <app-dropdown id="browser-suggestions" [options]="suggestions" [connectedTo]="inputEl">
+
   /** @type {AppDropdownElement} */
-  const suggestionsListEl = document.createElement('app-dropdown');
-  suggestionsListEl.options = suggestions;
-  suggestionsListEl.connectedTo = inputEl;
+  const existingEl = document.querySelector('#browser-suggestions');
+  if (existingEl) {
+    existingEl.options = suggestions;
+    existingEl.connectedTo = inputEl;
+    return;
+  }
+
+  /** @type {AppDropdownElement} */
+  const createdEl = document.createElement('app-dropdown');
+  createdEl.id = 'browser-suggestions';
+  createdEl.options = suggestions;
+  createdEl.connectedTo = inputEl;
 
   // On click, set the input value to the suggestion
-  suggestionsListEl.addEventListener('option-select', () => {
-    inputEl.value = suggestionsListEl.selected;
+  createdEl.addEventListener('option-select', () => {
+    console.log('option-select', createdEl.selected);
+    inputEl.value = createdEl.selected;
+    createdEl.remove();
   });
 
-  document.documentElement.appendChild(suggestionsListEl);
+  document.documentElement.appendChild(createdEl);
 };

@@ -88,7 +88,9 @@ export class AppDropdownElement extends HTMLElement {
   }
   set selected(value) {
     this.#selected = value;
-    this.dispatchEvent(new Event('option-select', { bubbles: true, composed: true }));
+    if (this.#selected !== null) {
+      this.dispatchEvent(new Event('option-select', { bubbles: true, composed: true }));
+    }
   }
   /** @type {string | null} */
   #selected = null;

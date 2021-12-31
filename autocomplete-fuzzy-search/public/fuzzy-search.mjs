@@ -12,14 +12,15 @@ const FUSE_OPTIONS = {
  *
  * This function is curried.
  *
- * @param {Array<string>} list
- * @returns {(pattern: string) => Array<{
- *   item: string,
- *   refIndex: number,
- *   score: number,
- * }>}
+ * @type {<T>(list: Array<T>, keys: Array<keyof T>) =>
+ *   (pattern: string) =>
+ *   Array<{
+ *     item: T,
+ *     refIndex: number,
+ *     score: number,
+ *   }>}
  */
-export const fuzzySearch = list => {
-  const fuse = new Fuse(list, FUSE_OPTIONS);
+export const fuzzySearch = (list, keys = []) => {
+  const fuse = new Fuse(list, { ...FUSE_OPTIONS, keys });
   return pattern => fuse.search(pattern);
 };

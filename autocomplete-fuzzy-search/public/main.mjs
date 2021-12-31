@@ -1,18 +1,19 @@
+import { BROWSERS_LIST, BROWSER_INPUT_ELEMENT_ID, BROWSER_SUGGESTIONS_ELEMENT_ID } from './data.mjs';
 import { AppDropdownElement } from './dropdown-element.mjs';
 import { fuzzySearch } from './fuzzy-search.mjs';
 
-const BROWSERS_LIST = ['Edge', 'Firefox', 'Chrome', 'Opera', 'Safari'];
-const fuzzySearchBrowsersList = fuzzySearch(BROWSERS_LIST);
+const fuzzySearchBrowsersList = fuzzySearch(BROWSERS_LIST, ['shortName', 'longName', 'type']);
 
 /** @type {HTMLInputElement} */
-const BROWSER_INPUT_ELEMENT = document.querySelector('#browser-input');
+const browserInputElement = document.getElementById(BROWSER_INPUT_ELEMENT_ID);
 
 // Filter the browsers list when the browser input changes
-BROWSER_INPUT_ELEMENT.addEventListener('input', () => {
-  const searchKeyword = BROWSER_INPUT_ELEMENT.value;
-  const filteredList = fuzzySearchBrowsersList(searchKeyword).map(el => el.item);
+browserInputElement.addEventListener('input', () => {
+  const searchKeyword = browserInputElement.value;
+  const filteredList = fuzzySearchBrowsersList(searchKeyword)
+  const cleanFilteredList = filteredList.map(el => el.item.longName);
   console.log(filteredList);
-  renderInputSuggestions(BROWSER_INPUT_ELEMENT, filteredList);
+  renderInputSuggestions(browserInputElement, cleanFilteredList);
 });
 
 /**
@@ -23,10 +24,15 @@ BROWSER_INPUT_ELEMENT.addEventListener('input', () => {
  * @returns {void}
  */
 const renderInputSuggestions = (inputEl, suggestions) => {
-  // <app-dropdown id="browser-suggestions" [options]="suggestions" [connectedTo]="inputEl">
+  /**
+   * <app-dropdown
+   *   [id]="BROWSER_SUGGESTIONS_ELEMENT_ID"
+   *   [options]="suggestions"
+   *   [connectedTo]="inputEl">
+   */
 
   /** @type {AppDropdownElement} */
-  const existingEl = document.querySelector('#browser-suggestions');
+  const existingEl = document.getElementById(BROWSER_SUGGESTIONS_ELEMENT_ID);
   if (existingEl) {
     existingEl.options = suggestions;
     existingEl.connectedTo = inputEl;
@@ -35,7 +41,7 @@ const renderInputSuggestions = (inputEl, suggestions) => {
 
   /** @type {AppDropdownElement} */
   const createdEl = document.createElement('app-dropdown');
-  createdEl.id = 'browser-suggestions';
+  createdEl.id = BROWSER_SUGGESTIONS_ELEMENT_ID;
   createdEl.options = suggestions;
   createdEl.connectedTo = inputEl;
 

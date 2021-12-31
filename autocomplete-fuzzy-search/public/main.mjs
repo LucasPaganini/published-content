@@ -1,3 +1,4 @@
+import { AppDropdownElement } from './dropdown-element.mjs';
 import { fuzzySearch } from './fuzzy-search.mjs';
 
 const BROWSERS_LIST = ['Edge', 'Firefox', 'Chrome', 'Opera', 'Safari'];
@@ -22,24 +23,16 @@ BROWSER_INPUT_ELEMENT.addEventListener('input', () => {
  * @returns {void}
  */
 const renderInputSuggestions = (inputEl, suggestions) => {
-  // <div class="input-suggestions">
-  const suggestionsListEl = document.createElement('div');
-  suggestionsListEl.classList.add('input-suggestions');
+  // <app-dropdown [options]="suggestions" [connectedTo]="inputEl">
+  /** @type {AppDropdownElement} */
+  const suggestionsListEl = document.createElement('app-dropdown');
+  suggestionsListEl.options = suggestions;
+  suggestionsListEl.connectedTo = inputEl;
 
-  for (const suggestion of suggestions) {
-    // <button class="input-suggestion">{{ suggestion }}</button>
-    const suggestionEl = document.createElement('button');
-    suggestionEl.classList.add('input-suggestion');
-    suggestionEl.innerText = suggestion;
-
-    // On click, set the input value to the suggestion
-    suggestionEl.addEventListener('click', () => {
-      inputEl.value = suggestion;
-    });
-
-    // Append to the suggestions list
-    suggestionsListEl.appendChild(suggestionEl);
-  }
+  // On click, set the input value to the suggestion
+  suggestionsListEl.addEventListener('option-select', () => {
+    inputEl.value = suggestionsListEl.selected;
+  });
 
   const positionSuggestionsList = () => {
     const inputElementCoordinates = inputEl.getBoundingClientRect();

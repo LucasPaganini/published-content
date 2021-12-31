@@ -1,4 +1,9 @@
-import { BROWSERS_LIST, BROWSER_INPUT_ELEMENT_ID, BROWSER_SUGGESTIONS_ELEMENT_ID } from './data.mjs';
+import {
+  BROWSERS_LIST,
+  BROWSER_INPUT_ELEMENT_ID,
+  BROWSER_SUGGESTIONS_ELEMENT_ID,
+  BROWSER_SUGGESTIONS_MAX_SIZE,
+} from './data.mjs';
 import { AppDropdownElement } from './dropdown-element.mjs';
 import { fuzzySearch } from './fuzzy-search.mjs';
 
@@ -10,9 +15,9 @@ const browserInputElement = document.getElementById(BROWSER_INPUT_ELEMENT_ID);
 // Filter the browsers list when the browser input changes
 browserInputElement.addEventListener('input', () => {
   const searchKeyword = browserInputElement.value;
-  const filteredList = fuzzySearchBrowsersList(searchKeyword)
-  const cleanFilteredList = filteredList.map(el => el.item.longName);
+  const filteredList = fuzzySearchBrowsersList(searchKeyword);
   console.log(filteredList);
+  const cleanFilteredList = filteredList.slice(0, BROWSER_SUGGESTIONS_MAX_SIZE).map(el => el.item.longName);
   renderInputSuggestions(browserInputElement, cleanFilteredList);
 });
 

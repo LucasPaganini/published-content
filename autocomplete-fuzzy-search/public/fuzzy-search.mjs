@@ -4,6 +4,7 @@ const FUSE_OPTIONS = {
   isCaseSensitive: false,
   includeScore: true,
   shouldSort: true,
+  threshold: 0.6,
 };
 
 /**

@@ -38,9 +38,18 @@ export class AppDropdownElement extends HTMLElement {
     this.#shadowRoot.appendChild(TEMPLATE.content.cloneNode(true));
   }
 
-  /**
-   * @param {Array<string>} value
-   */
+  #resizeListener = () => this.#updatePosition();
+
+  connectedCallback() {
+    this.#resizeListener();
+    window.addEventListener('resize', this.#resizeListener);
+  }
+
+  disconnectedCallback() {
+    window.removeEventListener('resize', this.#resizeListener);
+  }
+
+  // public options: Array<string>
   set options(value) {
     this.#options = value;
 
@@ -67,11 +76,9 @@ export class AppDropdownElement extends HTMLElement {
       this.#shadowRoot.appendChild(optionEl);
     }
   }
-
   get options() {
     return this.#options.concat([]);
   }
-
   /** @type {Array<string>} */
   #options = [];
 
@@ -85,6 +92,31 @@ export class AppDropdownElement extends HTMLElement {
   }
   /** @type {string | null} */
   #selected = null;
+
+  // public connectedTo: Node | null
+  set connectedTo(value) {
+    this.#connectedTo = value;
+    this.#updatePosition();
+  }
+  get connectedTo() {
+    return this.#connectedTo;
+  }
+  /** @type {Node | null} */
+  #connectedTo = null;
+
+  #updatePosition() {
+    console.log('#updatePosition');
+    if (this.connectedTo instanceof Node === false) {
+      this.style.display = 'none';
+    }
+
+    this.style.display = 'block';
+
+    const connectedElementCoordinates = this.connectedTo.getBoundingClientRect();
+    this.style.left = connectedElementCoordinates.left.toString() + 'px';
+    this.style.top = (connectedElementCoordinates.top + connectedElementCoordinates.height).toString() + 'px';
+    this.style.width = connectedElementCoordinates.width + 'px';
+  }
 }
 
 window.customElements.define('app-dropdown', AppDropdownElement);

@@ -34,14 +34,5 @@ const renderInputSuggestions = (inputEl, suggestions) => {
     inputEl.value = suggestionsListEl.selected;
   });
 
-  const positionSuggestionsList = () => {
-    const inputElementCoordinates = inputEl.getBoundingClientRect();
-    suggestionsListEl.style.left = inputElementCoordinates.left.toString() + 'px';
-    suggestionsListEl.style.top = (inputElementCoordinates.top + inputElementCoordinates.height).toString() + 'px';
-    suggestionsListEl.style.width = inputElementCoordinates.width + 'px';
-  };
-
   document.documentElement.appendChild(suggestionsListEl);
-  positionSuggestionsList();
-  window.addEventListener('resize', positionSuggestionsList);
 };

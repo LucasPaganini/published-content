@@ -3,7 +3,7 @@ import {
   BROWSER_INPUT_ELEMENT_ID,
   BROWSER_SUGGESTIONS_ELEMENT_ID,
   BROWSER_SUGGESTIONS_MAX_SIZE,
-} from './data.mjs';
+} from './config.mjs';
 import { AppDropdownElement } from './dropdown-element.mjs';
 import { fuzzySearch } from './fuzzy-search.mjs';
 

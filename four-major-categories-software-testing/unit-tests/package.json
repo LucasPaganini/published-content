@@ -1,0 +1,16 @@
+{
+	"name": "unit-tests",
+	"version": "1.0.0",
+	"description": "",
+	"main": "sum.js",
+	"scripts": {
+		"test": "npx jasmine sum.spec.js"
+	},
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"jasmine": "^4.1.0",
+		"jasmine-spec-reporter": "^7.0.0"
+	},
+	"type": "module"
+}

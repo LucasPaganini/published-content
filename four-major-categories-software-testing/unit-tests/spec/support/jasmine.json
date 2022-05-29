@@ -1,0 +1,9 @@
+{
+	"spec_dir": "spec",
+	"spec_files": ["sum.spec.js"],
+	"helpers": ["helpers/**/*.?(m)js"],
+	"env": {
+		"stopSpecOnExpectationFailure": false,
+		"random": false
+	}
+}

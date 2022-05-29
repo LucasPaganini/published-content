@@ -1,0 +1,16 @@
+{
+  "name": "end-to-end-tests",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "serve public",
+    "test": "cypress run --spec cypress/integration/fruits.spec.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^9.6.0",
+    "serve": "^13.0.2"
+  }
+}
